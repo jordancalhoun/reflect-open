@@ -92,17 +92,30 @@ See [docs/privacy.md](docs/privacy.md) for the full privacy model.
 Prerequisites:
 
 - A recent stable [Rust toolchain](https://rustup.rs)
-- Node.js with [pnpm](https://pnpm.io) 10
-- Xcode Command Line Tools
+- Node.js 24 or newer with the repository-pinned [pnpm](https://pnpm.io) version
+- Platform dependencies: Xcode Command Line Tools on macOS or the Tauri system
+  libraries on Linux
+
+On Omarchy, install the verified Arch Linux and Tauri prerequisites with:
+
+```bash
+./scripts/setup-omarchy.sh
+```
+
+The script uses `omarchy pkg add`, so already-installed packages are left
+alone. It installs a stable Rust toolchain only when `cargo` or `rustc` is not
+already available.
 
 ```bash
 git clone https://github.com/team-reflect/reflect-open.git
 cd reflect-open
-corepack enable
-pnpm install
+pnpm install --frozen-lockfile
 pnpm tauri dev
 pnpm tauri build
 ```
+
+Linux builds produce Debian, RPM, and AppImage bundles under
+`target/release/bundle/`.
 
 ## Project Layout
 
